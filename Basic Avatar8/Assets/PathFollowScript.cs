@@ -69,8 +69,16 @@ public class PathFollowScript : MonoBehaviour
 
         if (Switch.isTrack)
         {
-            rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rigidbody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            }
+            else
+            {
+                rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         
+            }
+               
             if (move.axisUse)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
