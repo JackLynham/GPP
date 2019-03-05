@@ -80,7 +80,7 @@ public class Char_Move : MonoBehaviour
         //    backwards = true;
         //}
 
-        bool test =false;
+       // bool test =false;
 
         //MovementVertical();
 
@@ -96,6 +96,21 @@ public class Char_Move : MonoBehaviour
             anim.SetFloat("Speed", speed);
             anim.SetFloat("Direction", hor, dampentime, Time.deltaTime);
 
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
+
+            }
+           
+
+
+            //For Splines
             if (Input.GetAxisRaw("Vertical") != 0)
             {
                 if (axisUse == false)
@@ -109,21 +124,6 @@ public class Char_Move : MonoBehaviour
                 axisUse = false;
             }
 
-
-
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
-
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
-
-            }
-           
         }
 
         WorldSpace(this.transform, camera.transform, ref turnSpeed, ref moveSpeed);
@@ -212,6 +212,7 @@ public class Char_Move : MonoBehaviour
         {
             jumpSource.clip = jumpclip;
             jumpSource.Play();
+            speed = 1;
                     
 
         }
@@ -219,7 +220,7 @@ public class Char_Move : MonoBehaviour
         if (jumps > 0 && interaction.doubleJump == false)
         {
           
-            rb.velocity = new Vector3(0, 10.0f, 0);
+            rb.velocity = new Vector3(3, 10.0f, 0);
             dustCloud.Play();
             grounded = false;
             jumps = jumps - 2;
