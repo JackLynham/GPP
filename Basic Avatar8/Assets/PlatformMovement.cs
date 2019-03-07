@@ -9,8 +9,9 @@ public class PlatformMovement : MonoBehaviour
     public float speed = 30.0f;
     private bool to;
     private GameObject player;
-
+    public CutScene scene;
     public Char_Move Move;
+    public CamTest test;
     // Use this for initialization
 
     private void Awake()
@@ -55,14 +56,15 @@ public class PlatformMovement : MonoBehaviour
     }
     void OnCollisionStay(Collision other)
     {
-        if (!Move.axisUse)
+        if (!Move.axisUse|| !Move.axisHor)
         {
 
             if (other.gameObject == player)
             {
-                player.transform.position = transform.position;
-
-
+                player.transform.parent = transform.transform;
+                test.CutToShot();
+                scene.TrackCam.SetActive(true);
+                scene.maincam.SetActive(false);
             }
         }
     }
@@ -72,6 +74,9 @@ public class PlatformMovement : MonoBehaviour
         if (other.gameObject == player)
         {
             player.transform.parent = null;
+
+            scene.TrackCam.SetActive(false);
+            scene.maincam.SetActive(true);
         }
     }
 }

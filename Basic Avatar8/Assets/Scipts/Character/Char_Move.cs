@@ -15,7 +15,8 @@ public class Char_Move : MonoBehaviour
     private float hor = 0.0f;
     private float vert = 10.0f;
     private float speed = 0.0f;
-    public bool axisUse = false; 
+    public bool axisUse = false;
+    public bool axisHor = false;
 
     public float direction = 0f;
 
@@ -48,6 +49,7 @@ public class Char_Move : MonoBehaviour
     //Other Classes
     public CharacterInteraction interaction;
    public Camera camera;
+    public CutScene scene;
 
  
 
@@ -74,13 +76,11 @@ public class Char_Move : MonoBehaviour
     void Update()
     {
 
-        //if (Input.GetKey(KeyCode.S))
-        //{
-        //    anim.SetBool("Backwards",true);
-        //    backwards = true;
-        //}
-
-       // bool test =false;
+        if (Input.GetKey(KeyCode.S))
+        {
+            anim.SetBool("Backwards", true);
+            backwards = true;
+        }
 
         //MovementVertical();
 
@@ -107,8 +107,6 @@ public class Char_Move : MonoBehaviour
                 transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
 
             }
-           
-
 
             //For Splines
             if (Input.GetAxisRaw("Vertical") != 0)
@@ -122,6 +120,11 @@ public class Char_Move : MonoBehaviour
             if (Input.GetAxisRaw("Vertical") == 0)
             {
                 axisUse = false;
+            }
+
+           if(scene.TrackCam)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
             }
 
         }
@@ -252,7 +255,7 @@ public class Char_Move : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Platform")
         {
             jumps = maxjumps;
             grounded = true;

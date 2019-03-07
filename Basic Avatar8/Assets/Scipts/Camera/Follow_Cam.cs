@@ -15,7 +15,7 @@ public class Follow_Cam : MonoBehaviour
 
     void Start()
     {
-        offset = transform.position - target.transform.position;
+        offset = transform.position  - target.transform.position ;
     }
 
     void FixedUpdate()
@@ -26,7 +26,7 @@ public class Follow_Cam : MonoBehaviour
 
 
             float dist = Vector3.Distance(target.transform.position, transform.position);
-            Debug.Log("dist: " + dist);
+       
         }
     }
 
