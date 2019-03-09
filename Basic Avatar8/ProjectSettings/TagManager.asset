@@ -10,6 +10,8 @@ TagManager:
   - SpeedBoost
   - DoubleJump
   - Targ
+  - PlatUp
+  - Platform
   layers:
   - Default
   - TransparentFX

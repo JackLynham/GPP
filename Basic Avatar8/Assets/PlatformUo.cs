@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformMovement : MonoBehaviour
+public class PlatformUo : MonoBehaviour
 {
-   public GameObject startPos;
+    public GameObject startPos;
     public GameObject endPos;
     public float speed = 30.0f;
     private bool to;
@@ -12,7 +12,6 @@ public class PlatformMovement : MonoBehaviour
     public CutScene scene;
     public Char_Move Move;
     public CamTest test;
-    Transform aa;
     // Use this for initialization
 
     private void Awake()
@@ -20,10 +19,10 @@ public class PlatformMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-   void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         player.transform.parent = transform.transform;
-        transform.position += Vector3.down * 50 * Time.deltaTime;
+        transform.position += Vector3.down * 100 * Time.deltaTime;
     }
     private void Update()
     {
@@ -49,28 +48,29 @@ public class PlatformMovement : MonoBehaviour
     private void FixedUpdate()
     {
         float step = speed * Time.deltaTime;
-            if (to)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, endPos.transform.position, step);
-            }
+        if (to)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPos.transform.position, step);
+        }
 
-            if (!to)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, startPos.transform.position, step);
-            }
-    
+        if (!to)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, startPos.transform.position, step);
+        }
+
     }
 
- 
+
     void OnCollisionStay(Collision other)
     {
-      
-        if (!Move.axisUse|| !Move.axisHor)
+
+        if (!Move.axisUse || !Move.axisHor)
         {
 
             if (other.gameObject == player)
             {
-          
+                player.transform.parent = transform.transform;
+                transform.position += Vector3.up * 10 * Time.deltaTime;
                 test.CutToShot();
                 scene.TrackCam.SetActive(true);
                 scene.maincam.SetActive(false);

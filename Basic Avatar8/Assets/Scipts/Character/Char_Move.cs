@@ -245,7 +245,7 @@ public class Char_Move : MonoBehaviour
             grounded = false;
             jumps = jumps - 1;
         }
-        if (jumps == 0)
+         if (jumps == 0)
         {
             interaction.doubleJump = false;
             return;
