@@ -8,6 +8,7 @@ public class PlayerMotor : MonoBehaviour
 {
     NavMeshAgent agent;
     Transform target;
+    Transform NewTarget;
     private bool test = false;
 	// Use this for initialization
 	void Start ()
@@ -16,9 +17,8 @@ public class PlayerMotor : MonoBehaviour
 	}
 
     public void Update()
-    {
-        //Debug.Log(newTarget);
-        // Debug.Log(target);
+    { 
+         Debug.Log(target);
         if (target != null)
         {
             agent.SetDestination(target.position);
@@ -32,31 +32,37 @@ public class PlayerMotor : MonoBehaviour
 
     public void FollowTarget(Interactble newTarget)
     {
-        agent.stoppingDistance = newTarget.radius * .8f;
+        agent.stoppingDistance = newTarget.radius * 2;
           target = newTarget.transform;
           agent.updateRotation = false;
 
-        if (test)
+    if(target == null )
         {
             newTarget = null;
-            //Debug.Log(newTarget);
-            
         }
-     
+
     }
 
     public void StopFollowingTarget()
     {
         target = null;
-        test = true;
         agent.stoppingDistance = 3f;
         agent.updateRotation = true;
+        StopMovement();
     }
+
 
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation,Time.deltaTime *5f);
+    }
+
+    void StopMovement()
+    {
+
+
+
     }
 }

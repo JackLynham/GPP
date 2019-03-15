@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") == 1)
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            //motor.StopFollowingTarget();
-            bgh.OnDeFocused();
+            motor.StopFollowingTarget();
+
         }
         if (Input.GetAxisRaw("Vertical") == -1)
         {
@@ -40,13 +40,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == -1)
         {
             transform.Rotate(Vector3.down * -turnSpeed * Time.deltaTime);
-
+            motor.StopFollowingTarget();
 
         }
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+            motor.StopFollowingTarget();
         }
         
         //Collecting Stuff
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
                 if (intera != null)
                 {
                     SetFocus(intera);
+
                 }
             }
         }
@@ -81,19 +83,18 @@ public class PlayerController : MonoBehaviour
 
     public void SetFocus(Interactble newFocus)
     {
-        if (focus!= null)
-            {
+        if (focus != null)
+        {
              focus.OnDeFocused();
-            }
+        }
         if(newFocus!= focus)
         {
-           
-      
             focus = newFocus;
             motor.FollowTarget(newFocus);
+    
         }
-   
-        newFocus.Onfocused(transform);
+           newFocus.Onfocused(transform);
+        
        
     }
     public void RemoveFocus()
