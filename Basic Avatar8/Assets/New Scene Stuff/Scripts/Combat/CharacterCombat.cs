@@ -5,7 +5,12 @@ using UnityEngine;
     [RequireComponent(typeof(CharacterStats))]
 public class CharacterCombat : MonoBehaviour
 {
+    public float attackSpeed = 1f;
+    private float attackCooldown = 0f;
 
+    public float attackDelay = .6f;
+
+    public event System.Action OnAttack;
 
     CharacterStats mystats;
 
@@ -15,9 +20,31 @@ public class CharacterCombat : MonoBehaviour
         mystats = GetComponent<CharacterStats>();
 
     }
+
+    void Update()
+    {
+        attackCooldown -= Time.deltaTime;
+    }
+
     public void Attack (CharacterStats targetStats)
     {
+        if(attackCooldown <= 0f)
+        {
+            StartCoroutine(DoDamage(targetStats, attackDelay));
+        }
+        if(OnAttack != null)
+        {
+            OnAttack();
+        }
+
         targetStats.TakeDamage(mystats.Damage.GetValue());
 
+    }
+
+    IEnumerator DoDamage(CharacterStats stats, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        stats.TakeDamage(mystats.Damage.GetValue());
     }
 }

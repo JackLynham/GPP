@@ -17,15 +17,16 @@ public class CharacterStats : MonoBehaviour
 
      void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(10);
-        }
+       if(Input.GetKeyDown(KeyCode.T))
+      {
+           TakeDamage(10);
+      }
     }
     public void TakeDamage(int damage)
     {
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         currentHealth -= damage;
+
         Debug.Log(transform.name + " takes" + Damage + " Damage");
 
         if(currentHealth <=0)

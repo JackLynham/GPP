@@ -9,17 +9,17 @@ public class AiController : MonoBehaviour
 
     Transform target;
      NavMeshAgent agent;
+    CharacterCombat combat;
 	// Use this for initialization
 	void Start ()
     {
         target = TrackPlayer.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-       
-    
-	}
-	
-	// Update is called once per frame
-	void Update () 
+        combat = GetComponent<CharacterCombat>();
+    }
+
+    // Update is called once per frame
+    void Update () 
     {
         float distance = Vector3.Distance(target.position, transform.position);
         
@@ -29,6 +29,11 @@ public class AiController : MonoBehaviour
            
             if(distance<= agent.stoppingDistance)
             {
+                CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                if (targetStats != null)
+                {
+                    combat.Attack(targetStats);
+                }
                 //attack and Face target
                 FaceTarget();
             }

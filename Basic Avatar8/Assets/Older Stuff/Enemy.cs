@@ -8,7 +8,7 @@ public class Enemy : Interactble
     PlayerManager playerManager;
     CharacterStats myStats;
 
-    private void Start()
+    void Start()
     {
         playerManager = PlayerManager.instance;
         myStats = GetComponent<CharacterStats>();
@@ -16,11 +16,12 @@ public class Enemy : Interactble
     public override void Interact()
     {
         base.Interact();
-
+        Debug.Log("What Is Life");
         CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
 
         if(playerCombat != null)
         {
+            Debug.Log("What Is love");
             playerCombat.Attack(myStats);
         }
     }
