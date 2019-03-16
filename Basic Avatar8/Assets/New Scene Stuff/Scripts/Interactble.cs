@@ -31,7 +31,12 @@ public class Interactble : MonoBehaviour
         player = null;
     }
 
-  void OnDrawGizmos()
+    public virtual void Interact()
+    {
+
+    }
+
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radius);

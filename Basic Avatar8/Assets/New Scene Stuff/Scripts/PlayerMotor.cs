@@ -18,7 +18,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void Update()
     { 
-         Debug.Log(target);
+         //Debug.Log(target);
         if (target != null)
         {
             agent.SetDestination(target.position);
