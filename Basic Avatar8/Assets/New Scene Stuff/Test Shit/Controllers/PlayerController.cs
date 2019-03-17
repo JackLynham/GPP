@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour {
 
 	Camera cam;			
 	PlayerMotor motor;
+    private Animator anim;
     // Get references
     void Start () {
 		cam = Camera.main;
 		motor = GetComponent<PlayerMotor>();
-	}
+        anim = gameObject.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,26 +29,40 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetAxisRaw("Vertical") == 1)
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            //  motor.StopFollowingTarget();
-
+            anim.Play("Run");
         }
+
         if (Input.GetAxisRaw("Vertical") == -1)
         {
             transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
-            //  motor.StopFollowingTarget();
+            anim.Play("Backward");
+        }
+        if (Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.Space))
+        {
+
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                anim.Play("Attack");
+                //  Debug.Log("b");
+            }
+            else
+            {
+            anim.Play("Idle");
+            }
+          
         }
 
         if (Input.GetAxisRaw("Horizontal") == -1)
         {
             transform.Rotate(Vector3.down * -turnSpeed * Time.deltaTime);
-            // motor.StopFollowingTarget();
-
+      
         }
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
             transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
-            //  motor.StopFollowingTarget();
+
         }
+
     }
 }

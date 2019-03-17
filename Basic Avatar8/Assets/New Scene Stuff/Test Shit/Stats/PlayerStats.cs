@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
-
+    public int damage = 3;
 	
 	public override void Die()
 	{

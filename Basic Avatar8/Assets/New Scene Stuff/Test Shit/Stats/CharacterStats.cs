@@ -10,19 +10,23 @@ public class CharacterStats : MonoBehaviour {
 
 	public Stat damage;
 	public Stat armor;
-
+    public int Dmg; 
 	// Set current health to max health
 	// when starting the game.
 	void Awake ()
 	{
 		currentHealth = maxHealth;
 	}
-
-	// Damage the character
-	public void TakeDamage (int damage)
+    private void Update()
+    {
+    }
+    // Damage the character
+    public void TakeDamage(int damage)
 	{
 		// Damage the character
 		currentHealth -= damage;
+        // Debug.Log(damage);
+     
 		Debug.Log(transform.name + " takes " + damage + " damage.");
 
 		// If health reaches zero
@@ -30,6 +34,7 @@ public class CharacterStats : MonoBehaviour {
 		{
 			Die();
 		}
+        damage = Dmg;
 	}
 
 	public virtual void Die ()

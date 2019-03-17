@@ -13,6 +13,7 @@ TagManager:
   - PlatUp
   - Platform
   - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX

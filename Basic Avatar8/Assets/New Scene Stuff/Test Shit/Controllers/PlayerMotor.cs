@@ -9,9 +9,9 @@ using UnityEngine.AI;
 public class PlayerMotor : Interactable
 {
     PlayerManager EneemyManager;
-    CharacterStats myStats;
-  public EnemyStats enemy;
-
+    public CharacterStats myStats;
+    public EnemyStats enemy;
+    public PlayerStats player;
     void Start()
     {
         EneemyManager = PlayerManager.instance;
@@ -21,10 +21,8 @@ public class PlayerMotor : Interactable
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            enemy.currentHealth -= 10;
-        }
+
+  
     }
     public override void Interact()
     {
@@ -36,5 +34,24 @@ public class PlayerMotor : Interactable
         }
     }
 
+    public void TakeDamage(int damage)
+    {
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    enemy.currentHealth -= player.damage;
+                }
+
+              
+            }
+        }
+
+    }
 }
