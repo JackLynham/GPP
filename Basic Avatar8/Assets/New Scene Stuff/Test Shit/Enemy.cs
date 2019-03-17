@@ -10,7 +10,8 @@ public class Enemy : Interactable {
 	PlayerManager playerManager;
 	CharacterStats myStats;
     public EnemyStats enemy;
-
+    public SlimeStats slime;
+    float time = .1f;
     void Start ()
 	{
 		playerManager = PlayerManager.instance;
@@ -21,7 +22,15 @@ public class Enemy : Interactable {
     {
         if(enemy.currentHealth <= 0)
         {
-            Destroy(gameObject);
+            slime.Slime1.SetActive(true);
+            slime.Slime2.SetActive(true);
+            time -= Time.deltaTime;
+            if (time <= 0)
+            {
+                Destroy(gameObject);
+            }
+           
+           
         }
     }
 

@@ -12,6 +12,7 @@ public class PlayerMotor : Interactable
     public CharacterStats myStats;
     public EnemyStats enemy;
     public PlayerStats player;
+    public SlimeStats slime;
     void Start()
     {
         EneemyManager = PlayerManager.instance;
@@ -41,7 +42,7 @@ public class PlayerMotor : Interactable
 
     private void OnTriggerStay(Collider other)
     {
-        {
+        
             if (other.gameObject.CompareTag("Enemy"))
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -50,6 +51,21 @@ public class PlayerMotor : Interactable
                 }
 
               
+            }
+
+        if (other.gameObject.CompareTag("Slime"))
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                slime.currentHealth -= 3;
+            }
+        }
+
+        if (other.gameObject.CompareTag("Slime"))
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                slime.currentHealth -= 3;
             }
         }
 
