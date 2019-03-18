@@ -19,11 +19,13 @@ public class EnemyController : MonoBehaviour
         target = TrackPlayer.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.Play("Slime Jump");
  
         float distance = Vector3.Distance(target.position, transform.position);
 
@@ -33,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
             if (distance <= agent.stoppingDistance)
             {
-                //anim.Play("Idle");
+                anim.Play("Idle");
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
                 if (targetStats != null)
                 {

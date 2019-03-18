@@ -11,23 +11,28 @@ public class Enemy : Interactable {
 	CharacterStats myStats;
     public EnemyStats enemy;
     public SlimeStats slime;
+    public GameObject MainSlime;
     float time = .1f;
+ 
+    public
     void Start ()
 	{
 		playerManager = PlayerManager.instance;
 		myStats = GetComponent<CharacterStats>();
-	}
+      
+    }
 
     private void Update()
     {
-        if(enemy.currentHealth <= 0)
+      
+        if (enemy.currentHealth <= 0)
         {
             slime.Slime1.SetActive(true);
             slime.Slime2.SetActive(true);
             time -= Time.deltaTime;
             if (time <= 0)
             {
-                Destroy(gameObject);
+                MainSlime.SetActive(false);
             }
            
            
@@ -41,7 +46,9 @@ public class Enemy : Interactable {
 		if (playerCombat != null)
 		{
 			playerCombat.Attack(myStats);
-		}
+
+           
+        }
 	}
 
 }
