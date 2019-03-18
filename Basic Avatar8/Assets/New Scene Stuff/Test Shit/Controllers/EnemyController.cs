@@ -10,6 +10,9 @@ public class EnemyController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     CharacterCombat combat;
+   
+
+    private Animator anim;
     // Use this for initialization
     void Start()
     {
@@ -21,6 +24,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+ 
         float distance = Vector3.Distance(target.position, transform.position);
 
         if (distance <= lookRaidus)
@@ -29,6 +33,7 @@ public class EnemyController : MonoBehaviour
 
             if (distance <= agent.stoppingDistance)
             {
+                //anim.Play("Idle");
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
                 if (targetStats != null)
                 {
