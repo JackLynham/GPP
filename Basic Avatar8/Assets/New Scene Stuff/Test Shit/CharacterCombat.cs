@@ -13,11 +13,13 @@ public class CharacterCombat : MonoBehaviour {
 	public event System.Action OnAttack;
 
 	CharacterStats myStats;
+    
 
 	void Start ()
 	{
 		myStats = GetComponent<CharacterStats>();
-	}
+
+    }
 
 	void Update ()
 	{
@@ -43,6 +45,7 @@ public class CharacterCombat : MonoBehaviour {
 		yield return new WaitForSeconds(delay);
 
 		stats.TakeDamage(myStats.damage.GetValue());
+       
 
 	}
 

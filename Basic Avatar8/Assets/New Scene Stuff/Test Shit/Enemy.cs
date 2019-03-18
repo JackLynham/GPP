@@ -12,7 +12,7 @@ public class Enemy : Interactable {
     public EnemyStats enemy;
     public SlimeStats slime;
     public GameObject MainSlime;
-    float time = .1f;
+    float time = .2f;
  
     public
     void Start ()

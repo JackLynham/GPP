@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	Camera cam;			
 	PlayerMotor motor;
     private Animator anim;
+ 
     // Get references
     void Start () {
 		cam = Camera.main;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour {
             {
                 anim.Play("Attack");
                 //  Debug.Log("b");
+              
             }
             else
             {

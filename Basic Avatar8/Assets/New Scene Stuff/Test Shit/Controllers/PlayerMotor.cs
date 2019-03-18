@@ -13,10 +13,17 @@ public class PlayerMotor : Interactable
     public EnemyStats enemy;
     public PlayerStats player;
     public SlimeStats slime;
+
+    public GameObject slime0;
+    public GameObject slime1;
+    public GameObject slime2;
+
+    public ParticleSystem parti;
     void Start()
     {
         EneemyManager = PlayerManager.instance;
         myStats = GetComponent<CharacterStats>();
+        parti.Stop();
     }
 
 
@@ -55,19 +62,23 @@ public class PlayerMotor : Interactable
 
         if (other.gameObject.CompareTag("Slime"))
         {
+        
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 slime.currentHealth -= 3;
+                Debug.Log("A");
+                parti.Play();
+
             }
         }
 
-        if (other.gameObject.CompareTag("Slime"))
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                slime.currentHealth -= 3;
-            }
-        }
+        //if (other.gameObject.CompareTag("Slime"))
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    {
+        //        slime.currentHealth -= 3;
+        //    }
+        //}
 
     }
 }
